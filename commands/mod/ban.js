@@ -24,6 +24,18 @@ module.exports = {
         if (!member.bannable) return interaction.reply('This member is not banable')
         
         member.ban({reason: reason}).catch(err => discord.log(err));
+        member.send(`You have been banned from ${interaction.guild.name} for: ${reason}`).catch(err => discord.log(err));
+        
+        try{
+            member.guild.channels.cache
+          .find((i) => i.name === "utily-logs")
+          .send(
+            `${member} banned by ${interaction.member.displayName}! | Reason: ${reason}`
+          ).catch(err => discord.log(err));
+        }catch(err){
+            discord.log(err);
+        }
+        
         return interaction.reply({content: `Successfully baned ${member}`, ephemeral: true});
         }catch(err){
         discord.log(err);

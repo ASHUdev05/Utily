@@ -24,6 +24,18 @@ module.exports = {
         if (!member.kickable) return interaction.reply('This member is not kickable')
         
         member.kick(reason).catch(err => discord.log(err));
+        member.send(`You have been kicked from ${interaction.guild.name} for: ${reason}`).catch(err => discord.log(err));
+        
+        try{
+            member.guild.channels.cache
+          .find((i) => i.name === "utily-logs")
+          .send(
+            `${member} kicked by ${interaction.member.displayName}! | Reason: ${reason}`
+          ).catch(err => discord.log(err));
+        }catch(err){
+            discord.log(err);
+        }
+        
         return interaction.reply({content: `Successfully kicked ${member}`, ephemeral: true});
         }catch(err){
         discord.log(err);
