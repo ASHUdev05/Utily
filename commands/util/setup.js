@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { BaseGuildTextChannel, ChannelType } = require('discord.js');
 const Discord = require(`discord.log`);
 const {api} = require(`../../config.json`);
 const discord = new Discord(api);
@@ -6,7 +7,7 @@ const discord = new Discord(api);
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('setup')
-		.setDescription('Sets up the bot'),
+		.setDescription('Sets up the bot! Usage: /setup'),
 	async execute(interaction) {
         try{
             if (interaction.member.permissions.has('ADMINISTRATOR') || interaction.member.permissions.has('MANAGE_GUILD')) {
@@ -27,15 +28,15 @@ module.exports = {
                     .catch(err => discord.log(err));
                 }
             await interaction.guild.channels.create('utily-logs', {
-                type: 'text',
+                type: ChannelType.GuildText,
                 permissionOverwrites: [
                     {
                         id: interaction.guild.id,
-                        deny: ['VIEW_CHANNEL'],
+                        deny: ['ViewChannel'],
                     },
                     {
                         id: interaction.user.id,
-                        allow: ['VIEW_CHANNEL'],
+                        allow: ['ViewChannel'],
                     },
                 ],
             }).catch(e =>{ return interaction.reply("An error ocurred:"+e)})
@@ -50,10 +51,10 @@ module.exports = {
           
                     interaction.guild.channels.cache.forEach(async (channel) => {
                        await channel.permissionOverwrites.create(muteRole, {
-                          VIEW_CHANNEL: false,
-                          SEND_MESSAGES: false,
-                          MANAGE_MESSAGES: false,
-                          ADD_REACTIONS: false
+                          ViewChannel: false,
+                          SendMessages: false,
+                          ManageMessages: false,
+                          AddReactions: false
                        });
                     });
                  } catch(e) {

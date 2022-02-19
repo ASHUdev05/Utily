@@ -14,6 +14,25 @@ module.exports = {
     )
     .addSubcommand((subcommand) =>
       subcommand
+        .setName("eco")
+        .setDescription("Help for category economy")
+        .addStringOption((option) =>
+          option
+            .setName("categoryeco")
+            .setDescription("The gif category")
+            .setRequired(false)
+            .addChoice("bal", "bal")
+            .addChoice("beg", "beg")
+            .addChoice("daily", "daily")
+            .addChoice("leaderboard", "leaderboard")
+            .addChoice("monthly", "monthly")
+            .addChoice("search", "search")
+            .addChoice("weekly", "weekly")
+            .addChoice("work", "work")
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
         .setName("fun")
         .setDescription("Help for category fun")
         .addStringOption((option) =>
@@ -22,6 +41,7 @@ module.exports = {
             .setDescription("The gif category")
             .setRequired(false)
             .addChoice("count", "count")
+            .addChoice("meme", "meme")
         )
     )
     .addSubcommand((subcommand) =>
@@ -47,6 +67,11 @@ module.exports = {
             .setDescription("The gif category")
             .setRequired(false)
             .addChoice(`ban`, `ban`)
+            .addChoice(`kick`, `kick`)
+            .addChoice(`mute`, `mute`)
+            .addChoice(`permmute`, `permmute`)
+            .addChoice(`unban`, `unban`)
+            .addChoice(`unmute`, `unmute`)
         )
     )
     .addSubcommand((subcommand) =>
@@ -64,6 +89,7 @@ module.exports = {
     ),
   async execute(interaction) {
     const search =
+      interaction.options.getString("categoryeco") ||
       interaction.options.getString("categoryfun") ||
       interaction.options.getString("categoryinfo") ||
       interaction.options.getString("categorymod");
@@ -92,11 +118,13 @@ module.exports = {
       })
       .setDescription("A list of commands and their descriptions.")
       .addFields(
-        { name: "Categories:", value: "fun | info | mod" },
+        { name: "Categories:", value: "eco | fun | info | mod" },
         { name: "\u200B", value: "\u200B" },
-        { name: "fun", value: "count", inline: true },
-        { name: "info", value: "help | ping", inline: true },
-        { name: "mod", value: "purge", inline: false },
+        { name: "eco", value: "`bal | beg | daily | leaderboard | monthly | search | weekly | work`", inline: false },
+        { name: "fun", value: "`count | meme`", inline: true },
+        { name: "info", value: "`help | ping`", inline: true },
+        { name: "mod", value: "`ban | kick | mute | permmute | unban | unmute`", inline: true },
+        { name: "util", value: "`clear`", inline: false },
         { name: "Example:", value:"`/helpfun categoryfun count`"}
       )
       .setThumbnail(interaction.client.user.displayAvatarURL({ format: "png" }))
