@@ -24,5 +24,8 @@ module.exports = {
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
         Tags.sync();
+		client.user.setStatus("idle");
+    var activities = [ `${client.guilds.cache.size} servers`, `${client.users.cache.size} users!`, `v0.0.0 [pre-release]`, 'preparing magic potions!' ], i = 0;
+    setInterval(() => client.user.setActivity(`\/help help | ${activities[i++ % activities.length]}`, { type: "PLAYING" }),5000)
 	},
 };

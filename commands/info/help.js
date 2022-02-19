@@ -111,7 +111,7 @@ module.exports = {
       .setColor(0x0099ff)
       .setTitle("UTILY's Help Menu")
       .setAuthor({
-        name: "v0.0.0 beta",
+        name: "v0.0.0 beta [pre-release]",
         iconURL:
           "https://cdn.discordapp.com/avatars/877804982689234994/6054386e76c804285a5c1e270890f10e.webp?size=80",
         url: "https://www.instagram.com/__legend05__",
