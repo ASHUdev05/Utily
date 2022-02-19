@@ -3,6 +3,7 @@ const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js'
 const { token } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.Channel] });
+exports.client = client;
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync("./commands");
