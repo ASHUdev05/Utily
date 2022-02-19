@@ -7,7 +7,7 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.isChatInputCommand()) return;
 
-    if (interaction.commandName != "setup") {
+    if (interaction.commandName != "setup" || interaction.commandName != "ban" || interaction.commandName != "kick" || interaction.commandName != "mute" || interaction.commandName != "unmute" || interaction.commandName != "permmute" || interaction.commandName != "unban") {
     const muteRole = interaction.guild.roles.cache.find(role => role.name === "Muted by Utily");
     const logChannel = interaction.guild.channels.cache.find((i) => i.name === "utily-logs");
     if (!muteRole && !logChannel) return interaction.reply(`Please run the setup command first to use the bot! \`Tip: /setup\``);

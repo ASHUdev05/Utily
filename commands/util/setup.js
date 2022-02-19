@@ -10,7 +10,7 @@ module.exports = {
 		.setDescription('Sets up the bot! Usage: /setup'),
 	async execute(interaction) {
         try{
-            if (interaction.member.permissions.has('ADMINISTRATOR') || interaction.member.permissions.has('MANAGE_GUILD')) {
+            if (interaction.member.permissions.has('Administrator') || interaction.member.permissions.has('ManageGuild')) {
                 if ((interaction.guild.channels.cache.find(c => c.name.toLowerCase() === 'utily-logs'))) {
                     return interaction
                       .reply(
