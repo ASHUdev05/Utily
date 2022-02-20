@@ -8,6 +8,7 @@ node_modules
 # database
 database.sqlite
 data.sqlite
+inventory.sqlite
 
 # super-secret stuff
 config.json
