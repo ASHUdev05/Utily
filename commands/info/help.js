@@ -120,7 +120,7 @@ module.exports = {
       .addFields(
         { name: "Categories:", value: "eco | fun | info | mod" },
         { name: "\u200B", value: "\u200B" },
-        { name: "eco", value: "`bal | beg | daily | leaderboard | monthly | search | weekly | work`", inline: false },
+        { name: "eco", value: "`bal | beg | buy | daily | inventory | leaderboard | monthly | search | shop | weekly | work`", inline: false },
         { name: "fun", value: "`count | meme`", inline: true },
         { name: "info", value: "`help | ping`", inline: true },
         { name: "mod", value: "`ban | kick | mute | permmute | unban | unmute`", inline: true },
