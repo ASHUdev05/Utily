@@ -1,3 +1,4 @@
+const { ActivityType } = require('discord.js');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('database', 'user', 'password', {
@@ -26,6 +27,6 @@ module.exports = {
         Tags.sync();
 		client.user.setStatus("idle");
     var activities = [ `${client.guilds.cache.size} servers`, `${client.users.cache.size} users!`, `v0.0.0 [pre-release]`, 'preparing magic potions!' ], i = 0;
-    setInterval(() => client.user.setActivity(`\/help help | ${activities[i++ % activities.length]}`, { type: "PLAYING" }),5000)
+    setInterval(() => client.user.setActivity(`\/help help | ${activities[i++ % activities.length]}`, { type: ActivityType.Playing }),5000)
 	},
 };
